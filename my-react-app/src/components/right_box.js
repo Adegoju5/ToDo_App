@@ -17,8 +17,7 @@ export default function RightBox(props) {
   const filteredTasks = props.tasks.filter(task =>
     task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     task.description.toLowerCase().includes(searchTerm.toLowerCase())
-);
-
+  );
 
   return (
     <div>
@@ -35,46 +34,48 @@ export default function RightBox(props) {
         <h2>Current Tasks</h2>
       </div>
 
-      {filteredTasks.length > 0 ? (
-        filteredTasks.map((task) => (
-          <div className="taskboxes" key={task.id} style={{ backgroundColor: colorMapper[task.status] }}>
-            {props.editopened && task.id === props.id && (
-              <EdittaskOverlay reveal={props.reveal} handleEditSubmit={props.handleEditSubmit} id={props.id} tasks={props.tasks}></EdittaskOverlay>
-            )}
-            {task.delete && <DeletetaskComponent id = {task.id} handleYesDelete = {props.handleYesDelete} />}
-            {task.closed ? (
-              <>
-                <h3 className="taskstatus">{task.status}</h3>
-                {task.showsb ? <h1 className="ellipsis" onClick={() => props.handleClose(task.id)}>...</h1> : null}
-              </>
-            ) : (
-              <>
-                <h3 className="taskstatus" onClick={() => props.handleEditClick(task.id)}>{props.reveal ? "edit" : null}</h3>
-                <h3 className="taskstatus" onClick={() => props.handleDelete(task.id)}>{props.reveal ? "delete" : null}</h3>
-                {task.showsb ? <FontAwesomeIcon icon={faTimes} className="icon" onClick={(e) => props.handleClose(task.id)} /> : null}
-              </>
-            )}
+      <div className="task_wrapper">
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task) => (
+            <div className="taskboxes" key={task.id} style={{ backgroundColor: colorMapper[task.status] }}>
+              {props.editopened && task.id === props.id && (
+                <EdittaskOverlay reveal={props.reveal} handleEditSubmit={props.handleEditSubmit} id={props.id} tasks={props.tasks}></EdittaskOverlay>
+              )}
+              {task.delete && <DeletetaskComponent id={task.id} handleYesDelete={props.handleYesDelete} />}
+              {task.closed ? (
+                <>
+                  <h3 className="taskstatus">{task.status}</h3>
+                  {task.showsb ? <h1 className="ellipsis" onClick={() => props.handleClose(task.id)}>...</h1> : null}
+                </>
+              ) : (
+                <>
+                  <h3 className="taskstatus" onClick={() => props.handleEditClick(task.id)}>{props.reveal ? "edit" : null}</h3>
+                  <h3 className="taskstatus" onClick={() => props.handleDelete(task.id)}>{props.reveal ? "delete" : null}</h3>
+                  {task.showsb ? <FontAwesomeIcon icon={faTimes} className="icon" onClick={(e) => props.handleClose(task.id)} /> : null}
+                </>
+              )}
 
+              <div className="inner-taxbox" style={{ maxHeight: '150px', overflowY: 'auto' }}>
+                <h2>{task.title}</h2>
+                <h5 className='esh'>{task.description}</h5>
+                <select className="dropdown" value={task.status} onChange={(e) => props.handleStatus(task.id, e.target.value)}>
+                  <option value="Upcoming">Upcoming</option>
+                  <option value="Ongoing">Ongoing</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="taskboxes">
+            <h3 className="taskstatus">Unknown</h3>
             <div className="inner-taxbox">
-              <h2>{task.title}</h2>
-              <h5 className='esh'>{task.description}</h5>
-              <select className="dropdown" value={task.status} onChange={(e) => props.handleStatus(task.id, e.target.value)}>
-                <option value="Upcoming">Upcoming</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Done">Done</option>
-              </select>
+              <h2>No task to display</h2>
+              <h5>No task to display</h5>
             </div>
           </div>
-        ))
-      ) : (
-        <div className="taskboxes">
-          <h3 className="taskstatus">Unknown</h3>
-          <div className="inner-taxbox">
-            <h2>No task to display</h2>
-            <h5>No task to display</h5>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

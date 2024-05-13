@@ -28,9 +28,13 @@
   .taskboxes{
     background-color: crimson;
     position: relative;
-    margin-bottom: 150px;
+    margin-bottom: 250px;
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
     border: 1px solid #ccc;
+  }
+  
+  .inner-taxbox {
+    padding: 10px; 
   }
 
   .icon {
@@ -76,7 +80,6 @@
         height: 45px;
         display: inline-block ;
         width: 3%;
-        background-color: blue;
         right: 0%;
         top: -30%;
         text-align: right;

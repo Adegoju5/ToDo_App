@@ -1,0 +1,26 @@
+.create_task_button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as block */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    transition-duration: 0.4s; /* Transition duration */
+    cursor: pointer; /* Cursor pointer */
+    border-radius: 12px; /* Rounded corners */
+  }
+  
+  .create_task_button:hover {
+    background-color: blueviolet; /* Darker green on hover */
+  }
+
+  .delete_task_button{
+    position: absolute;
+    cursor: pointer;
+    border-radius: 8px;
+    bottom: 2%;
+    left: 2%;
+  }

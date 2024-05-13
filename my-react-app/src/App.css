@@ -6,49 +6,21 @@
 }
 
 .left_box {
-  flex: 18%; /* 30% of the container */
+  flex: 10%; /* 30% of the container */
   background-color: #f4f4f4; /* Light gray background for visibility */
   padding: 20px; /* Padding for aesthetics */
 }
 
 .right_box {
-  flex: 82%; /* 70% of the container */
+  flex: 90%; /* 70% of the container */
   background-color: #fff; /* White background for contrast */
   padding: 20px; /* Padding for aesthetics */
    /* Center align the search container vertically */ /* Center align the search container horizontally */
 }
 
-.search_container {
-  position: relative;
-  background-color: green;
-  width: 100%; /* Full width of its parent */
-  margin-bottom: 20px; /* Adds space below the search container */
-}
 
-.search_box {
-  width: 70%;
-  height: 5%; /* Right padding is larger to accommodate the icon */
-  border: 1px solid #ccc;
-  border-radius: 5px; /* Rounded borders */
-  font-size: 16px; /* Adequate font size for readability */; /* Adequate font size for readability */
-}
 
-.search_icon {
-  position: absolute;
-  right: 30%; /* Positioned 10px from the right */
-  top: 45%; /* Centered vertically */
-  transform: translateY(-50%); /* Precise centering */
-  color: #ccc; /* Icon color */
-  pointer-events: none; /* Makes the icon non-clickable */
-}
 
-.task_box{
-  background-color: blue;
-}
-
-.calendar-icon {
-  margin-top: 15px;
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -56,16 +28,6 @@
     flex-direction: row; /* Keep horizontal layout */
   }
 
-  .left_box, .right_box {
-    /* No change in proportions */
-  }
 
-  .search_container, .search_box, .search_icon {
-    /* No change, ensure all styles apply uniformly */
-  }
 
-  .task_box {
-    /* No change, maintain desktop styling */
-  }
 }
-

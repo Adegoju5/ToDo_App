@@ -1,0 +1,92 @@
+.search_container {
+    position: relative;
+    width: 100%; /* Full width of its parent */
+    margin-bottom: 20px; /* Adds space below the search container */
+  }
+  
+  .search_box {
+    width: 70%;
+    height: 5%; /* Right padding is larger to accommodate the icon */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded borders */
+    font-size: 16px; /* Adequate font size for readability */; /* Adequate font size for readability */
+  }
+  
+  .search_icon {
+    position: absolute;
+    right: 30%; /* Positioned 10px from the right */
+    top: 45%; /* Centered vertically */
+    transform: translateY(-50%); /* Precise centering */
+    color: #ccc; /* Icon color */
+    pointer-events: none; /* Makes the icon non-clickable */
+  }
+  
+  .calendar-icon {
+    margin-top: 15px;
+  }
+  
+  .taskboxes{
+    background-color: crimson;
+    position: relative;
+    margin-bottom: 150px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid #ccc;
+  }
+
+  .icon {
+    position: absolute;
+    top: 5px; 
+    right: 0px; 
+    font-size: 50px;
+  }
+  
+  .taskstatus{
+    display: inline-block ;
+    width: 20%;
+  }
+  
+  .ellipsis{
+    height: 45px;
+    display: inline-block ;
+    width: 3%;
+    right: 0%;
+    top: -30%;
+    text-align: right;
+    position: absolute;
+  }
+  
+  .inner-taxbox{
+      position: absolute;
+      width: 100%;
+  }
+  
+  .esh {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    .taskstatus {
+        width: 50%; /* Adjust width as needed for smaller size */
+        font-size: 0.8em; /* Decrease font size for smaller screens */
+        padding: 5px; /* Add padding for space around elements */
+        text-align: center;
+    }
+    
+    .ellipsis{
+        height: 45px;
+        display: inline-block ;
+        width: 3%;
+        background-color: blue;
+        right: 0%;
+        top: -30%;
+        text-align: right;
+        position: absolute;
+        margin-right: 20px;
+      }
+    
+      .taskstatus{
+        display: inline-block ;
+        width: 20%;
+        padding-bottom: 20px;
+      }
+}

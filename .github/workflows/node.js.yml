@@ -21,8 +21,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    # navigate to directory
     - name: Navigate to project directory
       run:  cd my-react-app/
+    #print current working directory 
+    - name: print current directory
+      run: pwd
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:

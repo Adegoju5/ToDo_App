@@ -24,6 +24,8 @@ jobs:
     # navigate to directory
     - name: Navigate to project directory
       run:  cd my-react-app/
+    - name: List directory content
+      run: ls -l
     #print current working directory 
     - name: print current directory
       run: pwd

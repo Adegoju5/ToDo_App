@@ -42,3 +42,20 @@ jobs:
 #    - run: npm audit fix
     - run: npm run build --if-present
 #    - run: npm test
+    - name: login to docker Hub
+      run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+    - name: Build docker image
+      run: docker build -t akinbabs/ToDo-app .
+    - name: Publish image to docker hub
+      run: docker push akinbabs/ToDo-app:latest
+        
+  deploy:
+    needs: build
+    runs-on: [self-hosted]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull akinbabs/ToDo-app:latest        
+      - name: Delete old container
+        run: docker rm -f ToDo-container
+      - name: Run docker container
+        run: docker run -d -p 5000:5000 --name ToDo-container akinbabs/ToDo-app

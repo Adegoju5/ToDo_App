@@ -14,16 +14,19 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env: 
+      CI: false #set CI environment variable to false
+
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
     # navigate to directory
-    - name: Navigate to project directory
-      run:  cd my-react-app
+  #  - name: Navigate to project directory
+   #   run:  cd my-react-app
     - name: List directory content
       run: ls -l
     #print current working directory 
@@ -34,6 +37,25 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm --prefix /home/runner/work/ToDo_App/ToDo_App/my-react-app ci
-    - run: npm --prefix /home/runner/work/ToDo_App/ToDo_App/my-react-app run build --if-present
-    - run: npm --prefix /home/runner/work/ToDo_App/ToDo_App/my-react-app test
+#    - run: npm install
+    - run: npm ci
+#    - run: npm audit fix
+    - run: npm run build --if-present
+#    - run: npm test
+    - name: login to docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin docker.io
+    - name: Build docker image
+      run: docker build -t akinbabs/todo-app .
+    - name: Publish image to docker hub
+      run: docker push akinbabs/todo-app:latest
+        
+  deploy:
+    needs: build
+    runs-on: [self-hosted]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull akinbabs/todo-app:latest        
+      - name: Delete old container
+        run: docker rm -f todo-container
+      - name: Run docker container
+        run: docker run -d -p 5000:5000 --name todo-container akinbabs/todo-app
